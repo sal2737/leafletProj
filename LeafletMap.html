@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by sal2737 (http://jsbin.com/xecemo/2/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Map</title>
+<style id="jsbin-css">
+/*Defined height*/
+
+
+
+#map { height: 540px; 
+
+       }
+
+
+</style>
+</head>
+<body>
+  
+<!--Leaflet CSS-->
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.4/leaflet.css" />
+
+<!--Load Leaflet from CDN-->
+ <script src="http://cdn.leafletjs.com/leaflet-0.7.4/leaflet.js"></script>
+<b> Just with one quick look at this map, it's easy to see that Austin is surrounded on all sides by beautiful green spaces. As Longhorns and city dwellers, it can be easy to box yourself in both mentally and physically, and convince yourself that you're trappd in a concrete jungle. The benefits of time spent outside -- especially in beautiful green spaces -- are huge, and well-documented. Click anywhere to begin and start exploring some of the green spaces you can WALK TO from the UT campus!</b>
+<!--Map div-->
+ <div id="map"></div>
+
+<script id="jsbin-javascript">
+var map = L.map('map', {
+
+    center: [30.2861, -97.7394],
+
+    zoom: 10
+
+});
+
+
+
+//Mapbox tiles
+
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+
+    maxZoom: 18,
+
+    id: 'sal2737.nb4n402p',
+
+    accessToken: 'pk.eyJ1Ijoic2FsMjczNyIsImEiOiIwZjJjZjI4NjBhNzk1YzdmYTY2MjcwYTYxZGMxMGU1NyJ9.FHPGYVeMh_SFsoXw56SZUA'
+
+}).addTo(map);
+
+
+
+//Initialize green space polygons
+
+var shoalCreek = L.polygon([
+
+                [30.2808054,    -97.7510047],
+
+                [30.2813613,    -97.75250673],
+
+                [30.28262133,   -97.75420189],
+
+                [30.28375164,   -97.75452375],
+
+                [30.28449282,   -97.75495291],
+
+                [30.28528958,   -97.75493145],
+
+                [30.28588251,   -97.75484562],
+
+                [30.28669779,	-97.75460958],
+
+                [30.28832833,	-97.75428772],
+
+                [30.28879154,	-97.75415897],
+
+                [30.28868037,	-97.75379419],
+
+                [30.29107053,	-97.75216341],
+
+                [30.29260835,	-97.75124073],
+
+                [30.29303449,	-97.74945974],
+
+                [30.29253424,	-97.74834394],
+
+                [30.29275658,	-97.74772167],
+
+                [30.29321977,	-97.74789333],
+
+                [30.29609153,	-97.74999619],
+
+                [30.29659176,	-97.74999619],
+
+                [30.29825919,	-97.75048971],
+
+                [30.29890762,	-97.74969578],
+
+                [30.29925963,	-97.74755001],
+
+                [30.30005627,	-97.74705648],
+
+                [30.29988953,	-97.74658442],
+
+                [30.29916699,	-97.74703503],
+
+                [30.29885204,	-97.74733543],
+
+                [30.29866677,	-97.74793625],
+
+                [30.2984074,	-97.74840832],
+
+                [30.29790718,	-97.74875164],
+
+                [30.29727726,	-97.74896622],
+
+                [30.29685114,	-97.74903059],
+
+                [30.29653618,	-97.74898767],
+
+                [30.29622122,	-97.74890184],
+
+                [30.29590626,	-97.74873018],
+
+                [30.29333094,	-97.74712086],
+
+                [30.29292333,	-97.74707794],
+
+                [30.29270099,	-97.74716377],
+
+                [30.29255277,	-97.7472496],
+
+                [30.29234896,	-97.74746418],
+
+                [30.2922378,	-97.74770021],
+
+                [30.29214516,	-97.74795771],
+
+                [30.2921081,	-97.74840832],
+
+                [30.29168196,	-97.75053263],
+
+                [30.29158932,	-97.75070429],
+
+                [30.29142256,	-97.75091887],
+
+                [30.28969944,	-97.75237799],
+
+                [30.28919917,	-97.75263548],
+
+                [30.28877301,	-97.7528286],
+
+                [30.2883098,	-97.75293589],
+
+                [30.28666073,	-97.75332212],
+
+                [30.28616045,	-97.75332212],
+
+                [30.28571575,	-97.75332212],
+
+                [30.28521546,	-97.75325775],
+
+                [30.28443723,	-97.75287151],
+
+                [30.28386282,	-97.75248528],
+
+                [30.28326987,	-97.75197029],
+
+                [30.28276957,	-97.75145531],
+
+                [30.2826028,	-97.75124073],
+
+                [30.28199132,	-97.75089741],
+
+                [30.28143542,	-97.75076866],
+
+                [30.28087952,	-97.75066137],
+
+                [30.2806201,	-97.75068283],
+
+                [30.28002713,	-97.75070429],
+
+                [30.28006419,	-97.75106907],                
+
+             ]).bindPopup("This is the Shoal Creek Greenbelt");
+
+
+
+      eastwoods = L.polygon([
+
+                [30.28962532,	-97.73313046],
+
+                [30.29155226,	-97.73177862],
+
+                [30.29088525,	-97.73038387],
+
+                [30.29049615,	-97.73053408],
+
+                [30.29018117,	-97.73077011],
+
+                [30.28936592,	-97.73085594],
+
+                [30.2893474,    -97.73154259],
+
+                [30.28968091,	-97.73160696],
+
+                [30.28975502,	-97.73190737],
+
+                [30.28979208,	-97.73246527],
+
+              ]).bindPopup("This is Eastwoods Park");
+
+
+
+      southMall = L.polygon([
+
+                [30.28373311,	-97.73997545],
+
+                [30.28367752,	-97.73925662],
+
+                [30.28491899,	-97.73914933],
+
+                [30.28496531,	-97.73984671],
+
+      ]).bindPopup("This is the South Mall");
+
+
+
+      hemphill = L.polygon([
+
+                [30.29881499,	-97.73839831],
+
+                [30.29862046,	-97.73804426],
+
+                [30.29824066,	-97.73829103],
+
+                [30.29787939,	-97.73868799],
+
+                [30.29776822,	-97.73878455],
+
+                [30.29753664,	-97.73887038],
+
+                [30.29733284,	-97.73892403],
+
+                [30.29711978,	-97.73892403],
+
+                [30.2968604,	-97.73905277],
+
+                [30.2967863,	-97.73922443],
+
+                [30.29669366,	-97.73935318],
+
+                [30.29626754,	-97.73950338],
+
+                [30.29602668,	-97.73894548],
+
+                [30.29524854,	-97.73943901],
+
+                [30.29516516,	-97.73948193],
+
+                [30.29511885,	-97.73935318],
+
+                [30.29490578,	-97.7389133],
+
+                [30.2946464,	-97.73907423],
+
+                [30.29444259,	-97.73868799],
+
+                [30.29334946,	-97.73859143],
+
+                [30.29398867,	-97.74001837],
+
+                [30.29411836,	-97.74000764],
+
+                [30.29418321,	-97.74000764],
+
+                [30.29460934,	-97.73975015],
+
+                [30.29494283,	-97.74062991],
+
+                [30.29512811,	-97.74108052],
+
+                [30.29509105,	-97.74116635],
+
+                [30.29476682,	-97.74134874],
+
+                [30.29497063,	-97.74178863],
+
+                [30.29572098,	-97.7412951],
+
+                [30.29553571,	-97.74105906],
+
+                [30.29559129,	-97.74085522],
+
+                [30.29578583,	-97.74072647],
+
+                [30.29555424,	-97.74024367],
+
+                [30.29582288,	-97.73998618],
+
+                [30.29609153,	-97.73980379],
+
+                [30.29642502,	-97.73967505],
+
+                [30.29697157,	-97.73935318],
+
+                [30.29722168,	-97.73922443],
+
+                [30.2976478,	-97.73920298],
+
+                [30.29793497,	-97.73918152],
+
+                [30.29837035,	-97.73887038],
+
+           ]).bindPopup("This is Adams Hemphill Park");
+
+
+
+          shipe = L.polygon([
+
+                [30.30711459,	-97.72806644],
+
+                [30.30670704,	-97.72726178],
+
+                [30.30769813,	-97.72659659],
+
+                [30.30811494,	-97.72743344],
+
+           ]).bindPopup("This is Shipe Park");
+
+
+
+     wooldridge = L.polygon([
+
+                [30.27301319,	-97.74597287],
+
+                [30.27217927,	-97.74626255],
+
+                [30.27190129,	-97.74529696],
+
+                [30.27271668,	-97.74499655],
+
+           ]).bindPopup("This is Wooldridge Park");
+
+
+
+var longhorn = L.icon({
+
+    iconUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Texas_Longhorn_logo.svg/175px-Texas_Longhorn_logo.svg.png',
+
+    iconSize:     [90,45], // size of the icon
+
+    iconAnchor:   [40,35], // point of the icon which will correspond to marker's location
+
+    shadowAnchor: [4, 62],  // the same for the shadow
+
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+
+});
+
+L.marker([30.2861, -97.7394], {icon: longhorn}).addTo(map);
+
+
+
+map.on('click', function(e) { 
+
+    var parks = L.featureGroup([shoalCreek, eastwoods, southMall, hemphill, shipe, wooldridge]).addTo(map);
+
+    map.fitBounds(parks.getBounds());
+
+});
+
+
+</script>
+</body>
+</html>
